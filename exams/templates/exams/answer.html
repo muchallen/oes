@@ -1,0 +1,35 @@
+{% extends 'oes/base.html' %}
+{% load static from staticfiles %}
+
+{% block content %}
+<div class="container">
+<div class="exams">
+ <div class="container-fluid ">
+        <div class="text-center">
+        <h5 class="h3 mb-0 m-4 text-gray-800">Correct Answer</h5> 
+        </div>
+          
+          
+ <div class="m-auto create-exam-container" >
+          <form action="createAnswer" method="POST" class="create_exam ">
+          {% csrf_token %}
+          <div class="form-group select-exam">
+          <div class="mb-3 select-exam-control">
+            {{form}}
+            </div>
+            </div>
+            <div class="d-flex justify-content-center">
+          <input class="btn btn-primary mt-4" style='width:20em' type="submit" value="Save">
+          </div
+            
+          </form>
+          
+          
+          </div>
+          </div
+        
+</div>
+</div>
+</div>
+
+{% endblock %}

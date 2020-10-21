@@ -1,0 +1,72 @@
+{% extends 'oes/base.html' %}
+{% load static from staticfiles %}
+
+{% block content %}
+<div class="container">
+<div class="exams">
+ <div class="container-fluid">
+ <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <div class="d-sm-flex">
+          <h1 class="h3 mb-0 mr-3 text-gray-800">New Test </h1> 
+          </div>
+          
+          </div>
+
+         
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Question 1</h6>
+            </div>
+            <div class="card-body">
+
+            <img src="{% static 'img/placeholder.jpg' %}" class="d-block w-100 mb-4"  alt="placeholder.jpg" style="max-height:400px"/>
+            <div class="d-flex justify-content-center  mt-5 ">
+                <a href="#" class="btn btn-info shadow-sm mr-5"> Upload Image</a>
+                
+            </div>
+            <h5 class="mb-3">Question</h5>
+            <div class="mb-4">
+             <textarea id="mytextarea"  name="mytextarea">
+              Hello, World!
+                </textarea>
+                <div>
+
+
+            <h5 class="mt-5 mb-3">Possible Answers</h5>
+            <div class="possible-solutions">
+            <div class="form-group">
+            <label for="exampleInputEmail1">(Solution A)</label>
+            <div class="d-flex mb-3 "><input type="text" class="form-control" id="solutionA" > <a class="btn btn-success ml-4 "><i class="fas fa-plus fa-sm text-white" ></i></a> </div>
+
+            </div>
+
+             <div class="form-group">
+            <label for="exampleInputEmail1">(Correct Answer letter)</label>
+            <div class="d-flex mb-3 "><input type="text" class="form-control" id="solutionA" style="width:100px" ></div>
+            </div>
+
+            <div class="error-div">
+            <p class="text-danger">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt asperiores molestias delectus impedit laboriosam aliquid reprehenderit accusantium incidunt numquam. Eius.</p>
+            </div>
+            
+            
+            <div class="d-flex justify-content-center  mt-5 ">
+                <a href="#" class="btn btn-info shadow-sm mr-5"><i class="fas fa- fa-arrow-left fa-sm text-white"></i> PREVIOUS</a>
+                <a href="#" class="btn btn-success shadow-sm"><i class="fas fa- fa-arrow-right fa-sm text-white"></i> NEXT</a>
+            </div>
+
+            </div>
+          </div>
+
+        </div>
+</div>
+
+<form action="addtest" class="question-form">
+{{form}}
+</form>
+
+
+
+
+</div>
+{% endblock %}

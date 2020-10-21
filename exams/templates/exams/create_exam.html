@@ -1,0 +1,44 @@
+{% extends 'oes/base.html' %}
+{% load static from staticfiles %}
+
+{% block content %}
+<div class="container">
+<div class="exams">
+ <div class="container-fluid ">
+        <div class="text-center">
+        <h5 class="h3 mb-0 m-4 text-gray-800">New Test </h5> 
+        </div>
+          
+          
+ <div class="m-auto create-exam-container" >
+          <form action="createExam" method="POST" class="create_exam ">
+          {% csrf_token %}
+          <div class="form-group ">
+            <label for="testName">Name of Test</label>
+            <div class="d-flex mb-3 "><input type="text" name="name" class="form-control" id="testName"  ></div>
+            </div>
+            <div class="form-group">
+            <label for="time">Number of Questions</label>
+            <div class="d-flex mb-3 "><input type="number" name="questions_number" class="form-control" id="time"></div>
+            </div>
+            <div class="form-group">
+            <label for="time">Time in Minutes</label>
+            <div class="d-flex mb-3 "><input type="number" name="time"  class="form-control" id="time"></div>
+            </div>
+            
+            <label for="time">Instuctions</label>
+            <textarea id="mytextarea" name="instructions" class="form-control" name="mytextarea">
+                </textarea>
+                 <div class="d-flex justify-content-center">
+          <input class="btn btn-primary mt-4" style='width:20em' type="submit" value="Add Test">
+          </div
+          </form>
+         
+          
+          </div>
+          </div
+        
+</div>
+</div>
+</div>
+{% endblock %}

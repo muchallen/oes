@@ -1,0 +1,33 @@
+{% extends 'oes/base.html' %}
+{% load static from staticfiles %}
+
+{% block content %}
+
+<div class="container">
+ <div class="container-fluid ">
+        <div class="text-center">
+        <h5 class="h3 mb-0 m-4 text-gray-800">Exam</h5> 
+        </div>
+        <ul>
+          {% for i in combined %}
+
+        
+          <div class="m-4 ">
+            <p><strong>Question.{{i.0.question_number}}</strong> </p>
+            <p>{{i.0.question }}</p>
+            <div class="ml-5 mb-2">a.  <input type=checkbox >  {{i.1.possible_solution_a}} </div> 
+            <div class="ml-5 mb-2 ">b.  <input type=checkbox >  {{i.1.possible_solution_b}} </div>
+            <div class="ml-5 mb-2">c.  <input type=checkbox >  {{i.1.possible_solution_c}} </div>
+            <div class="ml-5 mb-2">d.  <input type=checkbox >  {{i.1.possible_solution_d}} </div>
+            <div class="mt4-5 mb-2"> <p><strong class="text-success"> Correct Answer: {{i.2.correct_solution_letter}}</strong></p> </div>
+
+          </div>
+        {% endfor %}
+         
+
+</div>
+</div>
+
+
+
+{% endblock %}

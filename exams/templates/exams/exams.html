@@ -1,0 +1,136 @@
+
+{% extends 'oes/base.html' %}
+
+{% block content %}
+<div class="container">
+<div class="exams">
+ <div class="container-fluid">
+ <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <div class="d-sm-flex">
+          <h1 class="h3 mb-0 mr-3 text-gray-800">Test Data Management </h1> 
+          </div>
+          <a href="/exams/createExam"   class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus fa-sm text-white"></i> New Test</a>
+          </div>
+
+         
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Test List</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Code</th>
+                      <th>Name</th>
+                      <th>Questions</th>
+                      <th>Created</th>
+                      <th>Status</th>
+                        <th></th>
+                       <th></th>
+                    </tr>
+                  </thead>
+                  
+                  <tbody>
+                  {%for exam in exams %}
+                        <tr>
+                      <td>X02</td>
+                      <td>{{exam.name}}</td>
+                      <td>{{exam.questions_number}}</td>
+                      <td>created</td>
+                      <td>live</td>
+                      <td><a class="btn btn-sm btn-info shadow-sm" href="/exams/viewExam">View</a> </td>
+                      <td><p><a class="btn btn-sm btn-warning shadow-sm" href="/exams/edit" >Edit</a>  <a data-toggle="modal" data-target="#deletemodal" class="btn btn-sm btn-danger text-white shadow-sm">Delete</a>  </p></td>
+                    </tr>
+                    {%endfor%}
+                    
+                   
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+</div>
+</div>
+
+ <!-- View Modal-->
+  <div class="modal fade" id="viewmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Test</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Delete Modal-->
+  <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Test</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Are you sure? </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" type="button" data-dismiss="modal">Delete</button>
+          <a class="btn btn-secondary" href="login.html">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+   <!-- Add Modal-->
+  <div class="modal fade " id="addmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Test</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+          <div class="form-group">
+            <label for="testName">Name of Test</label>
+            <div class="d-flex mb-3 "><input type="text" class="form-control" id="testName"  ></div>
+            </div>
+            <div class="form-group">
+            <label for="time">Number of Questions</label>
+            <div class="d-flex mb-3 "><input type="number" class="form-control" id="time"></div>
+            </div>
+            <div class="form-group">
+            <label for="time">Time in Minutes</label>
+            <div class="d-flex mb-3 "><input type="number" class="form-control" id="time"></div>
+            </div>
+            
+            <label for="time">Instuctions</label>
+            <textarea id="mytextarea"  class="form-control" name="mytextarea">
+              Hello, World!
+                </textarea>
+           
+        
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-success" href="/exams/addtest"   >Continue</a>
+          <a class="btn btn-secondary" href="/exams" data-dismiss="modal">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock  %}
+
+ 
+ 

@@ -12,7 +12,7 @@ class CreateExam(forms.ModelForm):
 class CreateQuestion(forms.ModelForm):
     class Meta:
         model = models.Question
-        fields = ['question_number','exam','question']
+        fields = ['question_number','exam','question','image']
 
 class CreateSolution(forms.ModelForm):
     class Meta:

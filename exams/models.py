@@ -6,8 +6,9 @@ from django.db import models
 # Create your models here.
 
 class Exam(models.Model):
-    name = models.CharField(max_length=500)
+    name = models.SlugField()
     time = models.IntegerField(default=0)
+    date_created = models.DateTimeField(auto_now_add=True)
     questions_number = models.IntegerField(default=0)
     instructions = models.TextField()
     def __str__(self):
@@ -17,6 +18,7 @@ class Exam(models.Model):
 
 class Question(models.Model):
     question_number = models.IntegerField(default=0)
+    image= models.ImageField(upload_to='images/',blank=True, null=True)
     question = models.TextField()
     exam=models.ForeignKey(Exam, default=None)
 

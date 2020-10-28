@@ -43,7 +43,7 @@ def create_question(request):
 
     if(count<=totalquestions):
         if(request.method=='POST'):
-            form = forms.CreateQuestion(request.POST)
+            form = forms.CreateQuestion(request.POST,request.FILES)
             if(form.is_valid()):
                 form.save()
                 form2 = forms.CreateSolution(initial={'exam':request.POST['exam'],})
@@ -92,8 +92,8 @@ def create_answer(request):
         form = forms.CorrectSolution()
         return render(request, 'exams/answer.html', {'form':form})
 
-def view_full_exam(request):
-    exam1= models.Exam.objects.get(name='Verbal Reasoning')
+def view_full_exam(request,slug):
+    exam1= models.Exam.objects.get(name=slug)
     questions = models.Question.objects.filter(exam=exam1)
     solutions = models.SolutionsText.objects.filter(exam=exam1)
     corectanswers= models.CorrectSolution.objects.filter(exam=exam1)
@@ -103,6 +103,19 @@ def view_full_exam(request):
     return render (request, 'exams/view_exam.html', {'combined':combinedlist, "exam":exam1 }) 
 
     
+def assign_exam(request,slug):
+    exam1= models.Exam.objects.get(name=slug)
+    questions = models.Question.objects.filter(exam=exam1)
+    solutions = models.SolutionsText.objects.filter(exam=exam1)
+    corectanswers= models.CorrectSolution.objects.filter(exam=exam1)
+    combinedlist2 = zip(questions,solutions)
+    
+    return render (request, 'exams/assign_exam.html',{'data':combinedlist2,'exam':exam1,'answers':corectanswers} ) 
+
+def mark_exam(request):
+    if(request.method=="POST"):
+        print(request.POST)
+    return HttpResponse("marked")
 
 #Exam List
 class ExamView(View):

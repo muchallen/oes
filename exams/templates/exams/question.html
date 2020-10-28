@@ -12,7 +12,7 @@
           
           
  <div class="m-auto create-exam-container" >
-          <form action="createQuestion" method="POST" class="create_exam ">
+          <form action="createQuestion" method="POST" class="create_exam" enctype="multipart/form-data">
           {% csrf_token %}
           <div class="form-group select-exam">
           <div class="mb-3 select-exam-control">

@@ -13,8 +13,19 @@
  <div class="m-auto create-exam-container" >
           <form action="createAnswer" method="POST" class="create_exam ">
           {% csrf_token %}
-          <div class="form-group select-exam">
-          <div class="mb-3 select-exam-control">
+          <div class="form-group select-exam ">
+          <div class="mb-3 select-exam-control ">
+            <label for="id_correct_solution_letter">Correct Answer:</label>
+            <select id="selector1" class="form-control">
+            <option value>----</option>
+            <option value="a">a</option>
+            <option value="b">b</option>
+            <option value="c">c</option>
+            <option value="d">d</option>
+            </select>
+            </div>
+            <label>Exam: </label>
+            <div class="mb-3 select-exam-control answer-form">
             {{form}}
             </div>
             </div>
@@ -32,4 +43,22 @@
 </div>
 </div>
 
+<script>
+ 
+ var selector = document.getElementById('selector1')
+ var input = document.getElementById('id_correct_solution_letter')
+
+
+
+selector.addEventListener("change",function(){
+  input.value = selector.value
+
+  console.log(input)
+})
+
+
+</script>
+
 {% endblock %}
+
+

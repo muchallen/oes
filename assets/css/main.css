@@ -83,3 +83,59 @@
     border-radius: .35rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+
+.signup-form input{
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #6e707e;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #d1d3e2;
+    border-radius: .35rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
+
+.signup-form span{
+    font-size: 10px;
+}
+
+.signup-form li{
+    display: block;
+}
+
+.signup-form label{
+    display: block;
+}
+
+.errorlist li{
+    font-size: 10px;
+}
+
+input[type='file']{
+    appearance: initial;
+    background-color: initial;
+    cursor: default;
+    align-items: baseline;
+    color: inherit;
+    text-overflow: ellipsis;
+    white-space: pre;
+    text-align: start !important;
+    padding: initial;
+    border: initial;
+    overflow: hidden;
+}
+
+#id_correct_solution_letter{
+    display: none;
+}
+
+.answer-form label{
+    display:none
+}

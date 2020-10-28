@@ -1,0 +1,266 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}" />
+         <link rel="stylesheet" href="{% static 'css/main.css'%}" />
+      <link rel="stylesheet" href="{% static 'vendor/fontawesome-free/css/all.min.css'%}" />
+      <link rel="stylesheet" href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css'%}" />
+      <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+       <script src='https://cdn.tiny.cloud/1/ycxeeptpk1lxvdyywatz44irdoyi4l7w0gzt0xfv6r366wah/tinymce/5/tinymce.min.js' referrerpolicy="origin">
+  </script>
+  <script>
+    tinymce.init({
+      selector: '#mytextarea'
+    });
+  </script>
+</head>
+       
+  <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    <title>OES</title>
+</head>
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" >
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">OES  <sup>zw</sup></div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <span class="nav-link" >
+          <span> VERBAL REASONING TEST </span>
+          </span>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <li class="nav-item">
+        <span class="nav-link" href="/companies/">
+          <p>Time Remaining</p>
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span id="minutes">Time</span>
+          <span id="seconds">Time</span>
+          
+      </li>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" >
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+
+          
+
+            <!-- Nav Item - Messages -->
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!-- Counter - Messages -->
+                <span>Welcome, Rutendo</span>
+              </a>
+              <!-- Dropdown - Messages -->
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+
+          </ul>
+
+        </nav>
+ {% block content %}
+
+<div class="container">
+ <div class="container-fluid ">
+        <div class="text-center">
+        <h5 class="h3 mb-0 m-4 text-gray-800">{{exam.name}}</h5> 
+        </div>
+        <hr>
+        <form method="post" action="/exams/markExam">
+         {% csrf_token %}
+          {% for i in data %}
+          <div class="m-4 ">
+            <p><strong>Question.{{i.0.question_number}}</strong> </p>
+            <p>{{i.0.question }}</p>
+            {%if i.0.image.url != None %}
+            <img src="{{i.0.image.url}}" style='max-height:400px' class="m-3">
+            {% endif %}
+            <div class="ml-5 mb-2">a.  <input type=checkbox class="{{i.0.question_number}} form-check-input"    id="{{i.0.question_number}}a" name="{{i.0.question_number}}chka" >  {{i.1.possible_solution_a}} </div> 
+            <div class="ml-5 mb-2 ">b. <input type=checkbox class="{{i.0.question_number}} form-check-input"  id="{{i.0.question_number}}b" name="{{i.0.question_number}}chkb" >  {{i.1.possible_solution_b}} </div>
+            <div class="ml-5 mb-2">c.  <input type=checkbox class="{{i.0.question_number}} form-check-input"  id="{{i.0.question_number}}c" name="{{i.0.question_number}}chkc" >  {{i.1.possible_solution_c}} </div>
+            <div class="ml-5 mb-2">d.  <input type=checkbox class="{{i.0.question_number}} form-check-input "  id="{{i.0.question_number}}d" name="{{i.0.question_number}}chkd" >  {{i.1.possible_solution_d}} </div>
+            
+          </div>
+        {% endfor %}
+
+        <span id="btn-mark" class="btn btn-success" >submit</span>
+
+        </form>
+         
+
+</div>
+</div>
+
+
+
+{% endblock %}
+
+      <script src="{% static 'js/jquery.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script> 
+  <!-- Core plugin JavaScript-->
+  <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js'%}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{% static 'js/sb-admin-2.min.js'%}"></script>
+
+  <!-- Page level plugins -->
+  <script src="{% static 'vendor/chart.js/Chart.min.js'%}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{% static 'js/chart-area-demo.js'%}"></script>
+  <script src="{% static 'js/chart-pie-demo.js'%}"></script>
+ <script src="{% static 'vendor/datatables/jquery.dataTables.min.js'%}"></script>
+  
+  <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js'%}"></script>
+
+
+   <script src="{% static 'js/datatables-demo.js'%}"></script>
+<script src="{% static 'js/jquery.min.js'%}"></script>
+<script>
+  var submit= document.getElementById("btn-mark")
+  var time =parseInt({{exam.time}}*60)
+  var totalquestions= parseInt({{exam.questions_number}})
+
+  var marks=0
+    
+    function countDown(){
+        time=time-1
+        var minutes = Math.floor(time/60);
+        var seconds = Math.floor(time - (minutes*60));
+        $("#minutes").html(minutes + "<span>Minutes</span>");
+        $("#seconds").html(seconds + "<span>Seconds</span>");
+        if(minutes===0 && seconds===0){
+            confirm("Time Up")
+        }
+       
+    }
+      setInterval( ()=>countDown(), 1000);  
+
+
+
+      //marking function
+      function mark(){
+        var y=1;
+        console.log('{{answer.correct_solution_letter}}')
+        {%for answer in answers%}
+        
+         if(document.getElementById(''+y+'{{answer.correct_solution_letter}}').checked){
+          marks=marks+1
+         }
+        
+        y++
+        {%endfor%}
+
+       alert("Your score is: "+marks) 
+       marks=0
+
+      }
+      
+      
+      
+      
+      // test submission
+      submit.addEventListener("click",function (){
+       mark();
+      })
+
+
+    var checkboxes =[]
+    for(var y=1 ;y <=totalquestions ;y++){
+        checkboxes.push(document.getElementsByClassName(''+y)) 
+    }
+
+    
+
+ for(var d =0 ; d<checkboxes.length; d++){
+        for(var p=0; p< checkboxes[d].length; p++){
+          checkboxes[d][p].addEventListener(
+            "change",function(e){
+              for(var n= 0; n<checkboxes[parseInt(e.target.className)-1].length;n++){
+               checkboxes[parseInt(e.target.className)-1][n].checked=false
+              }
+              e.target.checked=true
+            }
+          )
+        }
+       }
+
+    </script>
+</body>
+</html>

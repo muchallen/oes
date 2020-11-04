@@ -8,12 +8,13 @@
         <div class="text-center">
         <h5 class="h3 mb-0 m-4 text-gray-800">Exam</h5> 
         </div>
-        <ul>
+        
           {% for i in combined %}
 
         
-          <div class="m-4 ">
+          <div class="m-5 card p-5">
             <p><strong>Question.{{i.0.question_number}}</strong> </p>
+            <div class="text-right mb-4 " > <a><strong class="text-success"> Correct Answer: {{i.2.correct_solution_letter}}</strong></a> </div>
             <p>{{i.0.question }}</p>
             {%if i.0.image.url != None %}
             <img src="{{i.0.image.url}}" style='max-height:400px' class="m-3">
@@ -22,8 +23,10 @@
             <div class="ml-5 mb-2 ">b.  <input type=checkbox >  {{i.1.possible_solution_b}} </div>
             <div class="ml-5 mb-2">c.  <input type=checkbox >  {{i.1.possible_solution_c}} </div>
             <div class="ml-5 mb-2">d.  <input type=checkbox >  {{i.1.possible_solution_d}} </div>
-            <div class="mt4-5 mb-2"> <p><strong class="text-success"> Correct Answer: {{i.2.correct_solution_letter}}</strong></p> </div>
-
+   
+            <div class="text-center"> <a class="btn btn-warning mr-3" href="/exams/editQuestion/{{exam}}/{{i.0.question_number}}" style="width:130px">edit</a>
+        
+          </div>
           </div>
         {% endfor %}
          

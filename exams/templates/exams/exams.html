@@ -7,7 +7,7 @@
  <div class="container-fluid">
  <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <div class="d-sm-flex">
-          <h1 class="h3 mb-0 mr-3 text-gray-800">Test Data Management </h1> 
+          <h1 class="h3 mb-0 mr-3 text-gray-800">Test Management </h1> 
           </div>
           <a href="/exams/createExam"   class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus fa-sm text-white"></i> New Test</a>
           </div>
@@ -24,7 +24,7 @@
                     <tr>
                       <th>Name</th>
                       <th>Questions</th>
-                      <th>Created</th>
+                      <th>Date Created</th>
                         <th></th>
                        <th></th>
                     </tr>
@@ -36,14 +36,15 @@
                       <td>{{exam.name}}</td>
                       <td>{{exam.questions_number}}</td>
                       <td>{{exam.date_created}}</td>
-                      <td><a class="btn btn-sm btn-info shadow-sm" href="/exams/{{exam.name}}">View</a> <a class="btn btn-sm btn-success shadow-sm" href="/exams/assignExam/{{exam.name}}">Assign</a> </td>
-                      <td><p><a class="btn btn-sm btn-warning shadow-sm" href="/exams/edit" >Edit</a>  <a data-toggle="modal" data-target="#deletemodal" class="btn btn-sm btn-danger text-white shadow-sm">Delete</a>  </p></td>
+                      <td class="text-center"><a class="btn btn-sm btn-info shadow-sm" href="/exams/{{exam.name}}">View</a>  </td>
+                      <td class="text-center"><p><a  href="/exams/deleteExam/{{exam.name}}"  class="btn btn-sm btn-danger text-white shadow-sm">Delete</a>  </p></td>
                     </tr>
                     {%endfor%}
                     
                    
                   </tbody>
                 </table>
+                    
               </div>
             </div>
           </div>

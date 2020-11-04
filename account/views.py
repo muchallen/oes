@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from django.shortcuts import render, redirect
 
@@ -21,7 +21,17 @@ def signup_view(request):
     return render(request, 'account/signup.html' ,{'form':form})
 
 def login_view(request):
-    return render(request, 'account/login.html')
+    if request.method=='POST':
+        return redirect('/home')
+
+    
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            # LOGIN USER
+            return redirect('/home')
+    else:
+        form = AuthenticationForm()
+    return render(request,'account/login.html',{'form':form})
 
 def forget_view(request):
     return render(request, 'account/forget.html')

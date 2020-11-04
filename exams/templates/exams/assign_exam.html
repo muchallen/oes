@@ -28,7 +28,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" >
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="z-index:2" >
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -44,40 +44,51 @@
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
         <span class="nav-link" >
-          <span> VERBAL REASONING TEST </span>
+          <span> INSTRUCTIONS </span>
           </span>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <li class="nav-item">
-        <span class="nav-link" href="/companies/">
-          <p>Time Remaining</p>
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span id="minutes">Time</span>
-          <span id="seconds">Time</span>
-          
-      </li>
+       <div>
+    
 
     </ul>
+
+   
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content-wrapper " class="d-flex flex-column">
 
       <!-- Main Content -->
-      <div id="content">
+      <div id="content" >
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" >
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow " style="position:fixed; left:0 ;top:0; width:100% ; z-index:1;" >
 
           <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+          <button id="sidebarToggleTop" class="btn  btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
 
-          <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto" >
+    <li class="nav-item no-arrow mr-5 ">   
+    <a class="nav-link " href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button id="btn-mark" class="btn btn-success " >Submit</button>
+              </a> 
+      </li>
+    <li class="nav-item dropdown no-arrow mx-1 mr-5 ">
+              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!-- Counter - Messages -->
+                 <i id="watch" class="fas fa-fw fa-tachometer-alt " ></i>
+                  <span id="time-text" class=" mr-2" style="color:black "> Time Remaining    </span>
+                  <span class="" id="minutes">0:</span>
+                  <span class="" id="seconds">0</span>
+              </a>
+              <!-- Dropdown - Messages -->
+            </li>
 
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
@@ -98,22 +109,8 @@
                 </form>
               </div>
             </li>
-
-          
-
-            <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <!-- Counter - Messages -->
-                <span>Welcome, Rutendo</span>
-              </a>
-              <!-- Dropdown - Messages -->
-            </li>
-
-            <div class="topbar-divider d-none d-sm-block"></div>
-
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
+             <div class="topbar-divider d-none d-sm-block"></div>
+             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
@@ -130,22 +127,39 @@
                 </a>
               </div>
             </li>
+          
+
+            <!-- Nav Item - Messages -->
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!-- Counter - Messages -->
+                <span <span class="text-primary">Welcome, Rutendo</span>
+              </a>
+              <!-- Dropdown - Messages -->
+            </li>
+
+           
+
+            <!-- Nav Item - User Information -->
+            
 
           </ul>
 
         </nav>
+        </div>
+        </div>
  {% block content %}
 
-<div class="container">
+<div class="container " style="margin-top:100px">
  <div class="container-fluid ">
         <div class="text-center">
-        <h5 class="h3 mb-0 m-4 text-gray-800">{{exam.name}}</h5> 
+        <h5 class="h3 text-gray-800">{{exam.name}}</h5> 
         </div>
-        <hr>
+        <hr style="width:100px; margin-bottom:80px">
         <form method="post" action="/exams/markExam">
          {% csrf_token %}
           {% for i in data %}
-          <div class="m-4 ">
+          <div class="m-4 card p-5">
             <p><strong>Question.{{i.0.question_number}}</strong> </p>
             <p>{{i.0.question }}</p>
             {%if i.0.image.url != None %}
@@ -159,11 +173,12 @@
           </div>
         {% endfor %}
 
-        <span id="btn-mark" class="btn btn-success" >submit</span>
+       
 
         </form>
          
 
+</div>
 </div>
 </div>
 
@@ -203,8 +218,21 @@
         time=time-1
         var minutes = Math.floor(time/60);
         var seconds = Math.floor(time - (minutes*60));
-        $("#minutes").html(minutes + "<span>Minutes</span>");
-        $("#seconds").html(seconds + "<span>Seconds</span>");
+        $("#minutes").html(minutes + "<span>:</span>");
+        $("#seconds").html(seconds + "");
+        if(minutes<5){
+          $("#minutes").css("color","red");
+          $("#seconds").css("color","red");
+          $("#watch").css("color","red");
+          $("#time-text").css("color","red");
+        }
+        else 
+        {
+          $("#minutes").css("color","green");
+          $("#seconds").css("color","green");
+           $("#watch").css("color","green");
+          $("#time-text").css("color","green");
+        }
         if(minutes===0 && seconds===0){
             confirm("Time Up")
         }

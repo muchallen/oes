@@ -1,0 +1,27 @@
+{% extends 'oes/base.html' %}
+{% load static from staticfiles %}
+
+{% block content %}
+<div class="container">
+<div class="exams">
+ <div class="container-fluid ">
+        <div class="text-center">
+        <h5 class="h3 mb-0 m-4 text-gray-800">New Company </h5> 
+        </div>
+          
+          
+ <div class="m-auto create-exam-container p-3" style="width:50%">
+          <form action="addCompany" method="POST" class="create_exam ">
+          {% csrf_token %}
+          {{form}}
+               <div class="d-flex justify-content-center">
+          <input class="btn btn-primary mt-4" style='width:20em' type="submit" value="Add Company">
+          </div
+          </form>  
+          </div>
+          </div
+        
+</div>
+</div>
+</div>
+{% endblock %}

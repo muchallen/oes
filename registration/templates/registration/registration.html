@@ -8,7 +8,7 @@
           <div class="d-sm-flex">
           <h1 class="h3 mb-0 mr-3 text-gray-800">Registration </h1> 
           </div>
-          <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus fa-sm text-white"></i> New Testee</a>
+          <a href="/registration/addTestee" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus fa-sm text-white"></i> New Testee</a>
           </div>
 
          
@@ -21,12 +21,12 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                       <th>ID</th>
+                      
                       <th>First Name</th>
                       <th>Last Name</th>
-                      
+                     
+                      <th>ID Number</th>
                       <th>Email</th>
-                      <th>Phone Number</th>
                       <th>Company</th>
                       <th></th>
                        <th></th>
@@ -34,62 +34,23 @@
                   </thead>
                   
                   <tbody>
+                  {%for testee in testees%}
                     <tr>
-                      <td>Quinn Flynn</td>
-                      <td>Support Lead</td>
-                      <td>Edinburgh</td>
-                      <td>22</td>
-                      <td>2013/03/03</td>
-                      <td>2013/03/03</td>
-                      <td><p><button class="btn btn-sm btn-info shadow-sm">View</button> <button class="btn btn-sm btn-success shadow-sm">Assign</button> </p></td>
-                      <td><p><button class="btn btn-sm btn-warning shadow-sm">edit</button> <button class="btn btn-sm btn-danger shadow-sm">delete</button> </p></td>
+                      <td>{{testee.first_name}}</td>
+                      <td>{{testee.last_name}}</td>
+                      <td>{{testee.id_number}}</td>
+                      <td>{{testee.email}} </td>
+                      <td>{{testee.company}}</td>
+                      <td><button class="btn btn-sm btn-success shadow-sm">Assign</button> </p></td>
+                      <td><p><button class="btn btn-sm btn-warning shadow-sm">Edit</button> <button class="btn btn-sm btn-danger shadow-sm">Delete</button> </p></td>
                     </tr>
-                     <tr>
-                      <td>Quinn Flynn</td>
-                      <td>Support Lead</td>
-                      <td>Edinburgh</td>
-                      <td>22</td>
-                      <td>2013/03/03</td>
-                      <td>2013/03/03</td>
-                      <td><p><button class="btn btn-sm btn-info shadow-sm">View</button> <button class="btn btn-sm btn-success shadow-sm">Assign</button> </p></td>
-                      <td><p><button class="btn btn-sm btn-warning shadow-sm">edit</button> <button class="btn btn-sm btn-danger shadow-sm">delete</button> </p></td>
-                    </tr>
-                   
-                    <tr>
-                      <td>Quinn Flynn</td>
-                      <td>Support Lead</td>
-                      <td>Edinburgh</td>
-                      <td>22</td>
-                      <td>2013/03/03</td>
-                      <td>2013/03/03</td>
-                      <td><p><button class="btn btn-sm btn-info shadow-sm">View</button> <button class="btn btn-sm btn-success shadow-sm">Assign</button> </p></td>
-                      <td><p><button class="btn btn-sm btn-warning shadow-sm">edit</button> <button class="btn btn-sm btn-danger shadow-sm">delete</button> </p></td>
-                    </tr>
-                   
-                    <tr>
-                      <td>Quinn Flynn</td>
-                      <td>Support Lead</td>
-                      <td>Edinburgh</td>
-                      <td>22</td>
-                      <td>2013/03/03</td>
-                      <td>2013/03/03</td>
-                      <td><p><button class="btn btn-sm btn-info shadow-sm">View</button> <button class="btn btn-sm btn-success shadow-sm">Assign</button> </p></td>
-                      <td><p><button class="btn btn-sm btn-warning shadow-sm">edit</button> <button class="btn btn-sm btn-danger shadow-sm">delete</button> </p></td>
-                    </tr>
-                   
-                    <tr>
-                      <td>Quinn Flynn</td>
-                      <td>Support Lead</td>
-                      <td>Edinburgh</td>
-                      <td>22</td>
-                      <td>2013/03/03</td>
-                      <td>2013/03/03</td>
-                      <td><p><button class="btn btn-sm btn-info shadow-sm">View</button> <button class="btn btn-sm btn-success shadow-sm">Assign</button> </p></td>
-                      <td><p><button class="btn btn-sm btn-warning shadow-sm">edit</button> <button class="btn btn-sm btn-danger shadow-sm">delete</button> </p></td>
-                    </tr>
+                    {%endfor%}
                   </tbody>
                 </table>
               </div>
+              <ul>
+                
+                    </ul>
             </div>
           </div>
         </div>

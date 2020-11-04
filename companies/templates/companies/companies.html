@@ -8,7 +8,7 @@
           <div class="d-sm-flex">
           <h1 class="h3 mb-0 mr-3 text-gray-800">Companies</h1> 
           </div>
-          <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus fa-sm text-white"></i> New Test</a>
+          <a href="/companies/addCompany" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus fa-sm text-white"></i> New Company</a>
           </div>
 
          
@@ -21,67 +21,25 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>ID </th>
-                      <th>Name</th>
-                      <th>Registered Staff</th>
-                      <th>Primary Contact</th>
+                 
+                      <th>Company</th>
+                      <th> Contact Staff Name</th>
+                      <th> Contact Number</th>
                       <th></th>
                       <th></th>   
                     </tr>
                   </thead>
                   
                   <tbody>
+                  {%for company in companies%}
                     <tr>
-                      <td>Quinn Flynn</td>
-                      <td>Support Lead</td>
-                      <td>Edinburgh</td>
-                      <td>22</td>
+                      <td>{{company.company_name}}</td>
+                      <td>{{company.staff_name}}</td>
+                      <td>{{company.staff_number}}</td>
                       <td><button class="btn btn-sm btn-info shadow-sm">View Details</button></td>
                       <td><p><button class="btn btn-sm btn-warning shadow-sm">edit</button> <button class="btn btn-sm btn-danger shadow-sm">delete</button> </p></td>
                     </tr>
-                    <tr>
-                      <td>Quinn Flynn</td>
-                      <td>Support Lead</td>
-                      <td>Edinburgh</td>
-                      <td>22</td>
-                      <td><button class="btn btn-sm btn-info shadow-sm">View Details</button></td>
-                      <td><p><button class="btn btn-sm btn-warning shadow-sm">edit</button> <button class="btn btn-sm btn-danger shadow-sm">delete</button> </p></td>
-                    </tr>
-                    <tr>
-                      <td>Quinn Flynn</td>
-                      <td>Support Lead</td>
-                      <td>Edinburgh</td>
-                      <td>22</td>
-                      <td><button class="btn btn-sm btn-info shadow-sm">View Details</button></td>
-                      <td><p><button class="btn btn-sm btn-warning shadow-sm">edit</button> <button class="btn btn-sm btn-danger shadow-sm">delete</button> </p></td>
-                    </tr>
-                    <tr>
-                      <td>Quinn Flynn</td>
-                      <td>Support Lead</td>
-                      <td>Edinburgh</td>
-                      <td>22</td>
-                      <td><button class="btn btn-sm btn-info shadow-sm">View Details</button></td>
-                      <td><p><button class="btn btn-sm btn-warning shadow-sm">edit</button> <button class="btn btn-sm btn-danger shadow-sm">delete</button> </p></td>
-                    </tr>
-                    <tr>
-                      <td>Quinn Flynn</td>
-                      <td>Support Lead</td>
-                      <td>Edinburgh</td>
-                      <td>22</td>
-                      <td><button class="btn btn-sm btn-info shadow-sm">View Details</button></td>
-                      <td><p><button class="btn btn-sm btn-warning shadow-sm">edit</button> <button class="btn btn-sm btn-danger shadow-sm">delete</button> </p></td>
-                    </tr>
-                    <tr>
-                      <td>Quinn Flynn</td>
-                      <td>Support Lead</td>
-                      <td>Edinburgh</td>
-                      <td>22</td>
-                      <td><button class="btn btn-sm btn-info shadow-sm">View Details</button></td>
-                      <td><p><button class="btn btn-sm btn-warning shadow-sm">edit</button> <button class="btn btn-sm btn-danger shadow-sm">delete</button> </p></td>
-                    </tr>
-                    
-                   
-                   
+                    {%endfor%}
                   </tbody>
                 </table>
               </div>

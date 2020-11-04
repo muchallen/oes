@@ -1,0 +1,75 @@
+{% extends 'oes/base.html' %}
+{% load static from staticfiles %}
+
+{% block content %}
+
+<div class="container">
+ <div class="container ">
+ <form method="POST" action="/exams/createQuestion/{{exam.name}}" >
+ {% csrf_token %}
+          <div class="m-4  select-exam-control create-question ">
+            <div class="card p-5">
+            <div class="text-center">
+            <h3>{{exam.name}} </h3>
+            </div>
+            <br>
+            {{form_question}}
+            </div>
+            <br>
+            <br>
+            <div class="card p-5">
+            <div class="text-center">
+            <h3>Solutions</h3>
+            </div>
+            {{form_solutions}}
+            </div>
+
+            
+            <br>
+            <br>
+            <div class="card p-5">
+            <div class="text-center">
+            <h3>Correct Solution</h3>
+            </div>
+            <label for="id_correct_solution_letter">Correct Answer:</label>
+            <select id="selector1" class="form-control">
+            <option value>----</option>
+            <option value="a">a</option>
+            <option value="b">b</option>
+            <option value="c">c</option>
+            <option value="d">d</option>
+            </select>
+            <br>
+            {{form_answer}}
+            </div>
+            
+          </div>
+          <div class="d-flex justify-content-center m-5">
+          <button type="submit" class="btn btn-success"  style="width:150px">Save</button>
+          </div>
+          </form>
+      
+         
+
+</div>
+</div>
+
+
+<script>
+ 
+ var selector = document.getElementById('selector1')
+ var input = document.getElementById('id_correct_solution_letter')
+
+selector.value=input.value
+
+selector.addEventListener("change",function(){
+  input.value = selector.value
+
+  console.log(input)
+})
+
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{%extends 'oes/base.html'%}
+
+{%block content%}
+<div class="container">
+<div class="exams">
+ <div class="container-fluid">
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <div class="d-sm-flex">
+          <h1 class="h3 mb-0 mr-3 text-gray-800">Accounts </h1> 
+          </div>
+          <a href="/registration/addTestee" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus fa-sm text-white"></i> New Account</a>
+          </div>
+
+         
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Accounts List</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      
+                      <th>Username</th> 
+                      <th></th>
+                       
+                    </tr>
+                  </thead>
+                  
+                  <tbody>
+                  {%for user in users%}
+                    <tr>
+                      <td class=>{{user.username}}</td>
+                      <td class="text-center"><div><button class="btn  btn-warning shadow-sm">Edit </button> <button class="btn  btn-danger shadow-sm">Delete</button></div> </p></td> 
+                    {%endfor%}
+                  </tbody>
+                </table>
+              </div>
+              <ul>
+                
+                    </ul>
+            </div>
+          </div>
+        </div>
+</div>
+</div>
+
+{% endblock %}

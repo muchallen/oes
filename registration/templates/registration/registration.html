@@ -1,4 +1,5 @@
 {%extends 'oes/base.html'%}
+{% load static from staticfiles %}
 
 {%block content%}
 <div class="container">
@@ -41,8 +42,8 @@
                       <td>{{testee.id_number}}</td>
                       <td>{{testee.email}} </td>
                       <td>{{testee.company}}</td>
-                      <td><button class="btn btn-sm btn-success shadow-sm">Assign</button> </p></td>
-                      <td><p><button class="btn btn-sm btn-warning shadow-sm">Edit</button> <button class="btn btn-sm btn-danger shadow-sm">Delete</button> </p></td>
+                      <td><button class="btn btn-sm btn-success shadow-sm btn-email" id="{{testee.email}}" data-toggle="modal" data-target="#testSelectModal">Assign</button> </p></td>
+                      <td><p><button class="btn btn-sm btn-warning shadow-sm ">Edit</button> <button class="btn btn-sm btn-danger shadow-sm">Delete</button> </p></td>
                     </tr>
                     {%endfor%}
                   </tbody>
@@ -56,5 +57,80 @@
         </div>
 </div>
 </div>
+
+
+<!-- Logout Modal-->
+<div class="modal fade" id="testSelectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Select Tests</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <ul>
+        {% for exam in exams %}
+
+        <li><input class="tests" id="{{exam.name}}" type="checkbox"> {{exam.name}}</li>
+
+        {%endfor%}
+
+
+      </ul>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        <button id="btn-assign" class="btn btn-primary" >Assign</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/jquery.min.js'%}"></script>
+<script>
+    var checkboxes = document.getElementsByClassName('tests');
+    var btnEmail = document.getElementsByClassName('btn-email');
+    var emailAdress= ""
+
+    for(var y=0; y<btnEmail.length; y++){
+      btnEmail[y].addEventListener("click", function (e) {
+          emailAdress = e.target.id
+         
+      })
+    }
+    var token = '{{csrf_token}}'
+    selectedTests = []
+   var btnAssign = document.getElementById('btn-assign');
+   btnAssign.addEventListener('click', function(){
+     
+    for(var x = 0 ; x< checkboxes.length; x++){
+      if(checkboxes[x].checked==true){
+        selectedTests.push(checkboxes[x].id)
+      }      
+    }
+    console.log(selectedTests)
+    
+    $.ajax({
+      headers: { "X-CSRFToken": token },
+      // points to the url where your data will be posted
+      url:'/registration/',
+      // post for security reason
+      type: "POST",
+      // data that you will like to return 
+      data: {data:[{tests : selectedTests}, {email :emailAdress}]},
+
+     
+      // what to do when the call is success 
+      success:function(response){},
+      // what to do when the call is complete ( you can right your clean from code here)
+      complete:function(){},
+      // what to do when there is an error
+      error:function (xhr, textStatus, thrownError){}
+  });
+   })
+    
+</script>
 
 {% endblock %}

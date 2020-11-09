@@ -1,0 +1,52 @@
+{%extends 'oes/base.html'%}
+{% load static from staticfiles %}
+   
+
+    {%block content%}
+    <div class="container">
+    <div class="exams">
+     <div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+              <div class="d-sm-flex">
+              <h1 class="h3 mb-0 mr-3 text-gray-800">My Account </h1> 
+              </div>
+             
+              </div>
+    
+             
+              
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-primary">Account Details</h6>
+                    </div>
+                    <br>
+                    <div class="card-body ">
+                     <div class="m-auto text-center" style="width: 50%;
+                     height:400xp;">
+                     
+                     <img class="mb-3" src="{% static 'img/avatar.png'%}">
+                     <p>Username : {{user.username}}</p>
+                     <p>Account Type : Administrator </p>
+                    <a class="btn btn-success text-white"> Update </a>
+                     </div>
+                    </div>
+                  </div>
+            
+                  <!-- Color System -->
+                 
+                  
+            
+                </div>
+                  <ul>
+                    
+                        </ul>
+                </div>
+              </div>
+            </div>
+    </div>
+    </div>
+    
+    {% endblock %}
+    
+    <!-- Project Card Example -->
+    

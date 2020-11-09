@@ -162,7 +162,7 @@ def update_question(request):
 
         print(question,exam,question_number)
 
-        return render (request, 'exams/view_exam.html')
+        return redirect ('/exams/')
 def create_question_form(request,exam):
     global count
     global totalquestions
